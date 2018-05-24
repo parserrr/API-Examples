@@ -1,7 +1,15 @@
 #Setup global request values
 site_ids = { 'int' => -99 }
-source_credentials = { 'SourceName' => 'YourSourceName', 'Password' => 'YourPassword', 'SiteIDs' => site_ids }
-user_credentials = { 'Username' => 'owner', 'Password' => 'demo1234', 'SiteIDs' => site_ids }
+source_credentials = {
+  'SourceName' => 'YourSourceName',
+  'Password' => 'YourPassword',
+  'SiteIDs' => site_ids
+}
+user_credentials = {
+  'Username' => 'owner',
+  'Password' => 'demo1234',
+  'SiteIDs' => site_ids
+}
 
 
 #######################
@@ -12,7 +20,10 @@ user_credentials = { 'Username' => 'owner', 'Password' => 'demo1234', 'SiteIDs' 
 http_client = Savon.client("https://api.mindbodyonline.com/0_5/ClassService.asmx?WSDL")
 
 #Create request and package it for the call
-http_request = { 'SourceCredentials' => source_credentials, 'UserCredentials' => user_credentials  }
+http_request = {
+  'SourceCredentials' => source_credentials,
+  'UserCredentials' => user_credentials
+}
 params = { 'Request' => http_request }
 
 #Run the call and store the results
@@ -44,13 +55,45 @@ end
 
 #Create request and package it for the call
 item = { 'ID' => 1364 }
-cart_item = { 'Quantity' => 1, 'Item' => item, :attributes! => { 'ins0:Item' => { 'xsi:type' => 'tns:Service' } } }
+cart_item = {
+  'Quantity' => 1,
+  'Item' => item,
+  :attributes! => {
+    'ins0:Item' => {
+      'xsi:type' => 'tns:Service'
+    }
+  }
+}
 cart_items = { 'CartItem' => cart_item }
 
-payment = { 'CreditCardNumber' => '4111111111111111', 'Amount' => 108.00, 'BillingAddress' => '123 Something', 'BillingCity' => 'SLO', 'BillingState' => 'CA', 'BillingPostalCode' => '93405', 'BillingName' => 'MindBody', 'ExpMonth' => '7', 'ExpYear' => '2016' }
-payments = { 'PaymentInfo' => payment, :attributes! => { 'ins0:PaymentInfo' => { 'xsi:type' => 'tns:CreditCardInfo' } } }
+payment = {
+  'CreditCardNumber' => '4111111111111111',
+  'Amount' => 108.00,
+  'BillingAddress' => '123 Something',
+  'BillingCity' => 'SLO',
+  'BillingState' => 'CA',
+  'BillingPostalCode' => '93405',
+  'BillingName' => 'MindBody',
+  'ExpMonth' => '7',
+  'ExpYear' => '2016'
+}
 
-https_request = { 'SourceCredentials' => source_credentials, 'UserCredentials' => user_credentials, 'ClientID' => '002542', 'CartItems' => cart_items, 'Payments' => payments }
+payments = {
+  'PaymentInfo' => payment,
+  :attributes! => {
+    'ins0:PaymentInfo' => {
+      'xsi:type' => 'tns:CreditCardInfo'
+    }
+  }
+}
+
+https_request = {
+  'SourceCredentials' => source_credentials,
+  'UserCredentials' => user_credentials,
+  'ClientID' => '002542',
+  'CartItems' => cart_items,
+  'Payments' => payments
+}
 params = { 'Request' => https_request }
 
 #Run the call and store the results

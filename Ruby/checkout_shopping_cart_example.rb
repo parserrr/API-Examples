@@ -68,5 +68,8 @@ result = https_client.call(:checkout_shopping_cart) do
   message params
 end
 
-# Parse results for use in the view
+# Parse results
 https_status = result.body.dig(:checkout_shopping_cart_response, :checkout_shopping_cart_result, :status)
+
+# Display results
+puts https_status

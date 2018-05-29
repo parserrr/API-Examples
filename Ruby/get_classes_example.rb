@@ -25,7 +25,7 @@ http_request = {
 }
 params = { 'Request' => http_request }
 
-# Run the call and store the results via GetClasses
+# Fetch current day's classes via GetClasses
 # https://developers.mindbodyonline.com/Documentation/ClassService?version=v5.0
 result = http_client.call(:get_classes, message: params)
 
@@ -41,6 +41,7 @@ formatted_classes = class_data.map do |scheduled_class|
   }
 end
 
+# Display class info
 puts "Class schedule:"
 formatted_classes.each do |formatted_class|
   puts "Name: #{formatted_class[:name]} (#{formatted_class[:start_date_time]} - #{formatted_class[:end_date_time]})"

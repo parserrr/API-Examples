@@ -1,5 +1,9 @@
+gem 'savon', '~> 2.12'
+
+require 'savon'
+
 # Setup credentials
-site_ids = { 'int' => -99 }
+site_ids = { 'int' => -99 } # Use your site ID here
 source_credentials = {
   'SourceName' => 'YourSourceName',
   'Password' => 'YourPassword',
@@ -46,4 +50,5 @@ puts "Class schedule:"
 formatted_classes.each do |formatted_class|
   puts "Name: #{formatted_class[:name]} (#{formatted_class[:start_date_time]} - #{formatted_class[:end_date_time]})"
   puts "Description: #{formatted_class[:description]}"
+  puts "-----------------------------------------------------------"
 end

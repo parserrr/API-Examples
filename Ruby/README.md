@@ -4,11 +4,12 @@
 * `cd Ruby` (this folder)
 * Check for bundler installation via `bundle -v`
   * If not installed, run `gem install bundler`
-* `bundle install`
+* `bundle install` to install dependencies listed in `Gemfile.lock`
 
 ## Running the examples
 
-* Update the `source_credentials` and `user_credentials` in the example scripts
-* Run scripts using `bundle exec`
-  * `bundle exec get_classes_example.rb` or `bundle exec checkout_shopping_cart_example.rb`
+* Update the `source_credentials`, `user_credentials`, and `site_ids` in the example scripts with your info
+* Run scripts using `ruby`
+  * `ruby get_classes_example.rb`
+  * `ruby checkout_shopping_cart_example.rb` (will require filling in more data specific to your site and transaction)
 * View response in console

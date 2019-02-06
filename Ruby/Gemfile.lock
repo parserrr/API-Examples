@@ -10,11 +10,11 @@ GEM
     httpi (2.4.3)
       rack
       socksify
-    mini_portile2 (2.3.0)
-    nokogiri (1.8.2)
-      mini_portile2 (~> 2.3.0)
+    mini_portile2 (2.4.0)
+    nokogiri (1.10.1)
+      mini_portile2 (~> 2.4.0)
     nori (2.6.0)
-    rack (2.0.5)
+    rack (2.0.6)
     savon (2.12.0)
       akami (~> 1.2)
       builder (>= 2.1.2)
@@ -35,4 +35,4 @@ DEPENDENCIES
   savon (~> 2.12)
 
 BUNDLED WITH
-   1.16.2
+   1.17.2

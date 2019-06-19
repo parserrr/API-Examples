@@ -27,7 +27,7 @@ class MBSaleService extends MBAPIService
 	 * @param SourceCredentials $credentials A source credentials object to use with this call
 	 * @return object The raw result of the SOAP call
 	 */
-	public function GetServices(array $programIDs = array(), array $sessionTypeIDs = array(), array $serviceIDs = array(), int $classID = null, int $classScheduleID = null, bool $sellOnline = null, int $locationID = null, SourceCredentials $credentials = null, $XMLDetail = XMLDetail::Full, $PageSize = NULL, $CurrentPage = NULL, $Fields = NULL)
+	public function GetServices(array $hideRelatedProgram, array $locationID, array $programIDs = array(), array $sessionTypeIDs = array(), array $serviceIDs = array(), int $classID = null, int $classScheduleID = null, bool $sellOnline = null, int $locationID = null, SourceCredentials $credentials = null, $XMLDetail = XMLDetail::Full, $PageSize = NULL, $CurrentPage = NULL, $Fields = NULL)
 	{
 		$additions = array();
 		if (isset($programIDs))
@@ -45,6 +45,10 @@ class MBSaleService extends MBAPIService
 		if (isset($classID))
 		{
 			$additions['ClassID'] = $classID;
+		}
+		if (isset($hideRelatedProgram))
+		{
+			$additions['HideRelatedPrograms'] = $hideRelatedProgram;
 		}
 		if (isset($classScheduleID))
 		{

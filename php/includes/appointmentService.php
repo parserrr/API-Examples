@@ -109,5 +109,51 @@ class MBAppointmentService extends MBAPIService
 		
 		return $result;
 	}
+	public function GetScheduleItems(array $ignorePrepFinishTime, array $staffIDs, SourceCredentials $credentials = null, $XMLDetail = XMLDetail::Full, $PageSize = NULL, $CurrentPage = NULL, $Fields = NULL)
+	{
+		$additions = array();
+
+		if (isset($locationIDs))
+		{
+			$additions['LocationIDs'] = $locationIDs;
+		}
+		if (isset($staffIDs))
+		{
+			$additions['StaffIDs'] = $staffIDs;
+		}
+		if (isset($startDate))
+		{
+			$additions['StartDate'] = $startDate;
+		}
+		if (isset($endDate))
+		{
+			$additions['EndDate'] = $endDate;
+		}
+		if (isset($ignorePrepFinishTime))
+		{
+			$additions['IgnorePrepFinishTimes'] = $ignorePrepFinishTime;
+		}
+		
+		
+		$params = $this->GetMindbodyParams($additions, $this->GetCredentials($credentials), $XMLDetail, $PageSize, $CurrentPage, $Fields);
+		
+		try {
+			$result = $this->client->GetScheduleItems($params);
+		} 
+		catch (SoapFault $fault)
+		{
+			debugResponse($this->client, $fault->getMessage());
+			// <xmp> tag displays xml output in html
+			echo '</xmp><br/><br/> Error Message : <br/>', $fault->getMessage(); 
+		}
+		
+		if ($this->debug)
+		{
+			debugRequest($this->client);
+			debugResponse($this->client, $result);
+		}
+		
+		return $result;
+	}
 	
 }
